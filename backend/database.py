@@ -1,11 +1,9 @@
-import sqlite3
-import os
+import psycopg2
 
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'opportunities.db')
+DATABASE_URL = "postgresql://neondb_owner:npg_9wtkqA2QCyIc@ep-mute-brook-an3cmz9n.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require"
 
 def get_db():
-    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(DATABASE_URL)
     return conn
 
 def init_db():
@@ -14,7 +12,7 @@ def init_db():
     
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS opportunities (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             title TEXT NOT NULL,
             description TEXT NOT NULL,
             category TEXT NOT NULL,
@@ -26,7 +24,7 @@ def init_db():
     
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS service_requests (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
             email TEXT NOT NULL,
             service TEXT NOT NULL,
@@ -37,3 +35,4 @@ def init_db():
     
     conn.commit()
     conn.close()
+    print("Successfully connected and initialized Neon Cloud PostgreSQL!")

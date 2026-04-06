@@ -31,17 +31,24 @@ app.add_middleware(
 @app.get("/api/opportunities", response_model=List[OpportunityResponse])
 def get_opportunities(category: str = None):
     conn = get_db()
-    cursor = conn.cursor()
+    import psycopg2.extras
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     
     if category and category != "All":
-        cursor.execute("SELECT * FROM opportunities WHERE category = ? ORDER BY created_at DESC", (category,))
+        cursor.execute("SELECT * FROM opportunities WHERE category = %s ORDER BY created_at DESC", (category,))
     else:
         cursor.execute("SELECT * FROM opportunities ORDER BY created_at DESC")
         
     rows = cursor.fetchall()
     conn.close()
     
-    return [OpportunityResponse(**dict(row)) for row in rows]
+    results = []
+    for r in rows:
+        d = dict(r)
+        d['created_at'] = str(d['created_at'])
+        results.append(d)
+        
+    return [OpportunityResponse(**d) for d in results]
 
 @app.post("/api/opportunities")
 def create_opportunity(opp: OpportunityCreate):
@@ -51,7 +58,7 @@ def create_opportunity(opp: OpportunityCreate):
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO opportunities (title, description, category, deadline, url) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO opportunities (title, description, category, deadline, url) VALUES (%s, %s, %s, %s, %s)",
         (opp.title, opp.description, opp.category, opp.deadline, opp.url)
     )
     conn.commit()
@@ -67,7 +74,7 @@ def update_opportunity(id: int, opp: OpportunityCreate):
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
-        "UPDATE opportunities SET title=?, description=?, category=?, deadline=?, url=? WHERE id=?",
+        "UPDATE opportunities SET title=%s, description=%s, category=%s, deadline=%s, url=%s WHERE id=%s",
         (opp.title, opp.description, opp.category, opp.deadline, opp.url, id)
     )
     conn.commit()
@@ -82,7 +89,7 @@ def delete_opportunity(id: int, admin_secret: str):
         
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM opportunities WHERE id=?", (id,))
+    cursor.execute("DELETE FROM opportunities WHERE id=%s", (id,))
     conn.commit()
     conn.close()
     
@@ -93,18 +100,26 @@ def delete_opportunity(id: int, admin_secret: str):
 @app.get("/api/requests", response_model=List[ServiceRequestResponse])
 def get_requests():
     conn = get_db()
-    cursor = conn.cursor()
+    import psycopg2.extras
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cursor.execute("SELECT * FROM service_requests ORDER BY created_at DESC")
     rows = cursor.fetchall()
     conn.close()
-    return [ServiceRequestResponse(**dict(row)) for row in rows]
+    
+    results = []
+    for r in rows:
+        d = dict(r)
+        d['created_at'] = str(d['created_at'])
+        results.append(d)
+        
+    return [ServiceRequestResponse(**d) for d in results]
 
 @app.post("/api/requests")
 def create_request(req: ServiceRequestCreate):
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO service_requests (name, email, service, message) VALUES (?, ?, ?, ?)",
+        "INSERT INTO service_requests (name, email, service, message) VALUES (%s, %s, %s, %s)",
         (req.name, req.email, req.service, req.message)
     )
     conn.commit()
