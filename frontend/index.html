@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Motive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=5">
+</head>
+<body>
+    <div class="bg-blobs"></div>
+
+    <nav>
+        <div class="logo">Career Motive</div>
+        <ul class="nav-links">
+            <li><a class="active" data-filter="All">All</a></li>
+            <li><a data-filter="Scholarship">Scholarships</a></li>
+            <li><a data-filter="Internship">Internships</a></li>
+            <li><a data-filter="Exchange">Exchange Programs</a></li>
+            <li><a data-filter="Conference">Conferences</a></li>
+            <li><a data-filter="Other">Other</a></li>
+            <li><a href="/services" style="color: var(--text-secondary); margin-left: 1rem;">Services</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Unlock Your <span>Academic Career</span></h1>
+        <p>Discover the latest scholarships, university admissions for Bachelor's, Master's, and PhD programs, conferences, and student competitions worldwide.</p>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title" id="current-category">Latest Opportunities</h2>
+        
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="grid" id="opportunities-grid">
+            <!-- Cards will be injected dynamically here -->
+        </div>
+    </main>
+
+    <script src="/static/script.js?v=7"></script>
+</body>
+</html>

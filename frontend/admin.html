@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Career Motive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=5">
+</head>
+<body>
+    <div class="bg-blobs"></div>
+
+    <nav>
+        <div class="logo">Career Motive <span style="font-size: 0.8rem; color: var(--text-secondary);">[ADMIN]</span></div>
+        <ul class="nav-links">
+            <li><a href="/">Back to Public Site</a></li>
+            <li><a href="/services" style="color: var(--text-secondary); margin-left: 1rem;">Services</a></li>
+        </ul>
+    </nav>
+
+    <main class="admin-container">
+        <h2>Post New Opportunity</h2>
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="title">Title *</label>
+                <input type="text" id="title" class="form-control" required placeholder="e.g. Oxford Rhodes Scholarship 2027">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category *</label>
+                <select id="category" class="form-control" required>
+                    <option value="Scholarship">Scholarship</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Exchange">Exchange Program</option>
+                    <option value="Conference">Conference</option>
+                    <option value="Other">Other Opportunity</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Description *</label>
+                <!-- Quill Editor Container -->
+                <div id="editor-container"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="deadline">Deadline</label>
+                <input type="date" id="deadline" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="url">Application URL *</label>
+                <input type="url" id="url" class="form-control" required placeholder="https://example.com/apply">
+            </div>
+
+            <div class="form-group">
+                <label for="admin_secret">Admin Password *</label>
+                <input type="password" id="admin_secret" class="form-control" required placeholder="Enter the secret key to upload">
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn">Publish Opportunity</button>
+            <div id="status-message" style="margin-top: 1rem; text-align: center;"></div>
+        </form>
+
+        <hr style="border: 1px solid var(--glass-border); margin: 3rem 0;">
+        <h2>Manage Opportunities</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Click "Edit" to modify a post. Remember to enter your Admin Password above before updating/deleting.</p>
+        
+        <div id="admin-opportunities-list" class="admin-list">
+            <!-- Cards will be populated here -->
+        </div>
+
+        <hr style="border: 1px solid var(--glass-border); margin: 4rem 0;">
+        <h2>Service Requests Inbox <span style="font-size:0.5em; background:rgba(234,67,83,0.2); color:#ea4335; padding:4px 8px; border-radius:12px; vertical-align:middle;">NEW</span></h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Client requests for resumes, cover letters, and application support.</p>
+        
+        <div id="admin-requests-list" class="admin-list" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Requests will be populated here -->
+        </div>
+    </main>
+
+    <!-- Quill Library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="/static/admin.js?v=8"></script>
+</body>
+</html>

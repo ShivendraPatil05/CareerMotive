@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Career Motive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css?v=6">
+    <style>
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-container {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .email-btn {
+            background: #EA4335;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .email-btn:hover {
+            box-shadow: 0 0 20px rgba(234, 67, 53, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blobs"></div>
+
+    <nav>
+        <div class="logo">Career Motive</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/services" class="active">Services</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Boost Your Chances of <span class="highlight">Success</span></h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto; font-size: 1.15rem; line-height: 1.6;">Get expert help creating ATS-friendly resumes, engaging cover letters, and full application assistance from professionals.</p>
+        </header>
+
+        <section class="services-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">Resume</span>
+                </div>
+                <h3 class="card-title">ATS-Friendly Resume</h3>
+                <p class="card-desc" style="white-space: normal;">We will craft a highly optimized, professional resume engineered to pass through Applicant Tracking Systems (ATS) and catch the recruiter's eye instantly.</p>
+                <a href="#contact" class="btn btn-outline" style="text-align: center; margin-top: 1rem; display: block;">Order Resume</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">Cover Letter</span>
+                </div>
+                <h3 class="card-title">Cover Letter Writing</h3>
+                <p class="card-desc" style="white-space: normal;">Stand out from the crowd with a customized, persuasive cover letter tailored explicitly for the internship, scholarship, or specific university you are applying to.</p>
+                <a href="#contact" class="btn btn-outline" style="text-align: center; margin-top: 1rem; display: block;">Order Cover Letter</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">Full Support</span>
+                </div>
+                <h3 class="card-title">Application Assistance</h3>
+                <p class="card-desc" style="white-space: normal;">We help you apply for internships, scholarships, and other career-boosting programs.</p>
+                <a href="#contact" class="btn btn-outline" style="text-align: center; margin-top: 1rem; display: block;">Request Assistance</a>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Request a Service</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Fill out the form below to message us right now and accelerate your career journey.</p>
+            
+            <form id="service-form" style="max-width: 600px; margin: 2.5rem auto 0 auto; text-align: left;">
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-primary); font-weight: 500;">Your Name *</label>
+                    <input type="text" name="name" class="form-control" required placeholder="John Doe">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-primary); font-weight: 500;">Email Address *</label>
+                    <input type="email" name="email" class="form-control" required placeholder="john@example.com">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-primary); font-weight: 500;">Service Required *</label>
+                    <select name="service" class="form-control" required>
+                        <option value="ATS-Friendly Resume">ATS-Friendly Resume</option>
+                        <option value="Cover Letter Writing">Cover Letter Writing</option>
+                        <option value="Full Application Assistance">Full Application Assistance</option>
+                        <option value="Other Query">Other Query</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: var(--text-primary); font-weight: 500;">Message / Details *</label>
+                    <textarea name="message" class="form-control" rows="4" required placeholder="Tell us what you need help with..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem; border: none; cursor: pointer;">Submit Request</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('service-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending Request...';
+            btn.disabled = true;
+
+            const payload = {
+                name: e.target.querySelector('[name="name"]').value,
+                email: e.target.querySelector('[name="email"]').value,
+                service: e.target.querySelector('[name="service"]').value,
+                message: e.target.querySelector('[name="message"]').value
+            };
+
+            try {
+                const response = await fetch('/api/requests', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    e.target.innerHTML = '<div style="text-align: center; padding: 4rem 2rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 15px;"><div style="font-size: 4rem; margin-bottom: 1rem;">✅</div><h3 style="color: #34d399; font-size: 2rem; margin-bottom: 1rem;">Request Saved!</h3><p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">Thank you, ' + payload.name + '! We have securely received your request.<br>We will reach out to you at <strong>' + payload.email + '</strong> shortly.</p></div>';
+                } else {
+                    alert('Error sending request. Please ensure all fields are valid.');
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                alert('Connection error. Please try again later.');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
